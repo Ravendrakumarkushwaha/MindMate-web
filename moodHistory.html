@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mood History</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #89f7fe, #66a6ff);
+      margin: 0;
+      padding: 30px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #222;
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      max-width: 500px;
+      margin: auto;
+    }
+
+    li {
+      background: #fff;
+      margin: 15px auto;
+      padding: 15px 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    li:hover {
+      transform: scale(1.02);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    .emoji {
+      font-size: 1.5rem;
+      margin-right: 10px;
+    }
+
+    .mood-text {
+      text-align: left;
+      flex-grow: 1;
+    }
+
+    .time {
+      font-size: 0.8rem;
+      color: #666;
+    }
+
+    .empty {
+      background: rgba(255, 255, 255, 0.6);
+      padding: 20px;
+      border-radius: 12px;
+      font-size: 1rem;
+      color: #444;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  
+  <h1>📖 Your Mood History</h1>
+  <ul id="history-list"></ul>
+
+  <script>
+    console.log("Mood History script loaded");
+
+    const moodHistory = JSON.parse(localStorage.getItem("moodHistory")) || [];
+    const list = document.getElementById("history-list");
+
+    // mood ke emojis define kar dete h
+    const moodEmojis = {
+      "Happy": "😊",
+      "Sad": "😢",
+      "Angry": "😡",
+      "Anxious": "😟"
+    };
+
+    if (moodHistory.length > 0) {
+      moodHistory.forEach(entry => {
+        const li = document.createElement("li");
+        
+        li.innerHTML = `
+          <span class="emoji">${moodEmojis[entry.mood] || "🙂"}</span>
+          <div class="mood-text">
+            <strong>${entry.mood}</strong><br>
+            <span class="time">${entry.time}</span>
+          </div>
+        `;
+        list.appendChild(li);
+      });
+    } else {
+      const li = document.createElement("li");
+      li.className = "empty";
+      li.textContent = "No mood history yet. Start tracking your moods! 🌱";
+      list.appendChild(li);
+    }
+  </script>
+
+</body>
+</html>

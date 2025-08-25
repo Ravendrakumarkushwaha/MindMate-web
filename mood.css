@@ -1,0 +1,36 @@
+body{
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: linear-gradient(to right, #e0c3fc, #8ec5fc);
+    padding: 50px;
+}
+
+h1{
+    font-size: 32px;
+    color: #333;
+}
+.mood-container{
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+.mood-btn{
+    padding: 10px 20px;
+    font-size: 20px;
+    border-radius: 10px;
+    border: none;
+    background-color: #ffccff;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.mood-btn:hover{
+    background-color: #e91e63;
+    color: white;
+}
+#message-box{
+    margin-top: 30px;
+    font-size: 20px;
+    color: #444;
+}
